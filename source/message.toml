@@ -1,0 +1,16 @@
+intro_message = "Thank you for your contribution to the Blender Extension Platform! Before approving this Extension, please review the following points."
+
+separator = "---"
+
+error_list = "## Elements to Change for Extension Approval"
+blender_name = "- Using `Blender` in the Extension name is not allowed. Please refer to the **Branding** section of the [Terms of Service](https://extensions.blender.org/terms-of-service/)."
+blender_logo = "- Using `Blender` logo in the Extension **Icon** or **Feature Image** is not allowed. Please refer to the **Branding** section of the [Terms of Service](https://extensions.blender.org/terms-of-service/)."
+remnant_files = "- The Extension contains **Remnant Files** like `.gitignore`, `__pycache__` that are not used by the Extension. Consider removing them. You can exclude these files from being added to the .zip by adding them in the [build] section in the Blender Manifest."
+missing_permission_network = "- The Extension is missing the **Network Permission** in the Blender Manifest. Consider adding it."
+missing_permission_file = "- The Extension is missing the **File Permission** in the Blender Manifest. Consider adding it."
+missing_permission_clipboard = "- The Extension is missing the **Clipboard Permission** in the Blender Manifest. Consider adding it."
+
+warning_list = "## Elements That Can Be Improved"
+commented_line = "- The **Commented Lines** present in the Blender Manifest can be removed for better readability (lines starting with a `#`)."
+underscore_in_name = "- The **Extension Name** contains underscores. Consider using spaces instead."
+missing_space_in_name = "- The **Extension Name** is missing spaces between words. Consider adding spaces."

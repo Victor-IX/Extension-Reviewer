@@ -1,4 +1,5 @@
 import bpy
+import json
 from bpy.types import Operator, Panel
 from numpy import add
 from .get_addons import get_addons, get_toml_data
@@ -40,6 +41,7 @@ class EXTENSIONREVIEW_PT_Review(Panel):
         layout = self.layout
         addon_list = get_addons()
         has_warnings = False
+        has_error = False
 
         for addon_name in addon_list:
             if getattr(context.scene, addon_name):
@@ -60,6 +62,7 @@ class EXTENSIONREVIEW_PT_Review(Panel):
                 col.label(text="Blender Manifest:")
 
                 box = layout.box()
+
                 for content in toml_content:
                     row = box.row()
                     row.scale_y = 0.5
@@ -74,22 +77,14 @@ class EXTENSIONREVIEW_PT_Review(Panel):
 
                 if warn_line_comment:
                     row.scale_y = 0.7
-                    row.label(text="Warning: Commented in the Manifest", icon="ERROR")
-                    has_warnings = True
-
-                if "blender" in addon_name.lower():
-                    row = box.row()
-                    row.scale_y = 0.7
-                    row.label(
-                        text="Warning: Blender in the Extension name", icon="ERROR"
-                    )
+                    row.label(text="Commented in the Manifest", icon="ERROR")
                     has_warnings = True
 
                 if "_" in addon_name:
                     row = box.row()
                     row.scale_y = 0.7
                     row.label(
-                        text="Warning: Underscore in the Extension name", icon="ERROR"
+                        text="Underscore in the Extension name", icon="ERROR"
                     )
                     has_warnings = True
 
@@ -97,17 +92,34 @@ class EXTENSIONREVIEW_PT_Review(Panel):
                     row = box.row()
                     row.scale_y = 0.7
                     row.label(
-                        text="Warning: Lower/Upper pair in the Extension name",
+                        text="Lower/Upper pair in the Extension name",
                         icon="ERROR",
                     )
                     has_warnings = True
 
                 if not has_warnings:
-                    row.label(text="No warnings", icon="INFO")
+                    row.label(text="No Warnings", icon="INFO")
 
                 row = layout.row()
                 col = row.column()
                 col.label(text="Error:")
 
+                box = layout.box()
+                row = box.row()
+
+                if "blender" in addon_name.lower():
+                    row = box.row()
+                    row.scale_y = 0.7
+                    row.label(
+                        text="Blender in the Extension name", icon="CANCEL"
+                    )
+                    has_error = True
+
+                if not has_error:
+                    row.label(text="No Errors", icon="INFO")
+
+                row = layout.row()
+                col = row.column()
+               
                 col.scale_y = 2
-                col.operator("extensionreview.toggle", text="Get Extension Review")
+                col.operator("extensionreview.toggle", text="Copy Extension Review")

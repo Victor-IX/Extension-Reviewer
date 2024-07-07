@@ -35,7 +35,7 @@ def get_addons():
 
 def get_toml_data(addon_name, context):
     scripts_path = bpy.utils.user_resource("EXTENSIONS")
-    path = scripts_path + "/user_default/"
+    path = os.path.join(scripts_path, "user_default")
     addon_folder = os.path.join(path, get_addon_folder(addon_name))
     manifest_path = os.path.join(addon_folder, "blender_manifest.toml")
 
@@ -52,7 +52,7 @@ def get_toml_data(addon_name, context):
 
 def get_addon_folder(addon_name):
     scripts_path = bpy.utils.user_resource("EXTENSIONS")
-    path = scripts_path + "/user_default/"
+    path = os.path.join(scripts_path, "user_default")
 
     try:
         addons_path = [os.path.join(path, item) for item in os.listdir(path)]
