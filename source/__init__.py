@@ -1,6 +1,7 @@
 import bpy
 from .panel import *
 from .get_addons import get_addons
+from bpy.props import BoolProperty
 
 bl_info = {
     "name": "Extension Reviewer",
@@ -11,7 +12,18 @@ bl_info = {
     "location": "View3D",
 }
 
-classes = (EXTENSIONREVIEW_PT_Panel, EXTENSIONREVIEW_OT_ToggleTextbox)
+
+bpy.types.Scene.show_original_manifest = BoolProperty(
+    name="Manifest Processing",
+    default=True,
+    description="Enable Manifest Processing",
+)
+
+classes = (
+    EXTENSIONREVIEW_PT_Panel,
+    EXTENSIONREVIEW_OT_ToggleTextbox,
+    EXTENSIONREVIEW_PT_Review,
+)
 
 
 def register():

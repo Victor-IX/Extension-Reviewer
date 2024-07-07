@@ -1,8 +1,9 @@
+from logging import warn
+from operator import contains
 import os
 import bpy
-import toml
-
-
+import toml 
+       
 def get_addons():
     scripts_path = bpy.utils.user_resource("EXTENSIONS")
     addon_list = []
@@ -32,7 +33,7 @@ def get_addons():
         return str(e)
 
 
-def get_toml_data(addon_name):
+def get_toml_data(addon_name, context):
     scripts_path = bpy.utils.user_resource("EXTENSIONS")
     path = scripts_path + "/user_default/"
     addon_folder = os.path.join(path, get_addon_folder(addon_name))
@@ -41,9 +42,12 @@ def get_toml_data(addon_name):
     if os.path.isfile(manifest_path):
         with open(manifest_path, "r") as file:
             addon_toml = file.readlines()
-            return addon_toml
+            warn_line_comment = any(line.strip().startswith("#") for line in addon_toml)  
+            if context.scene.show_original_manifest:
+                addon_toml = [line for line in addon_toml if line.strip() and not line.strip().startswith("#")]
+            return addon_toml, warn_line_comment
 
-    return None
+    return None, False
 
 
 def get_addon_folder(addon_name):
@@ -52,7 +56,6 @@ def get_addon_folder(addon_name):
 
     try:
         addons_path = [os.path.join(path, item) for item in os.listdir(path)]
-        print(addons_path)
 
         for addon_folder in addons_path:
             manifest_path = os.path.join(addon_folder, "blender_manifest.toml")
