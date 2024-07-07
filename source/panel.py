@@ -2,13 +2,15 @@ import bpy
 from bpy.types import Operator, Panel
 from .get_addons import get_addons, get_toml_data
 
+
 class EXTENSIONREVIEW_OT_ToggleTextbox(Operator):
     bl_idname = "extensionreview.toggle_textbox"
     bl_label = "Toggle Text Box"
 
     def execute(self, context):
         # Placeholder for any future operation needed
-        return {'FINISHED'}
+        return {"FINISHED"}
+
 
 class EXTENSIONREVIEW_PT_Panel(Panel):
     bl_label = "Get Addons List"
@@ -27,6 +29,6 @@ class EXTENSIONREVIEW_PT_Panel(Panel):
 
             if getattr(context.scene, addon_name):
                 toml_content = get_toml_data(addon_name)
+                
                 for content in toml_content:
-                    row = layout.row()
-                    row.label(text=content)
+                    layout.label(text=content)
