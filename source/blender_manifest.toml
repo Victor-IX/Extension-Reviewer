@@ -1,0 +1,26 @@
+schema_version = "1.0.0"
+
+id = "extension_reviewer"
+version = "0.1.0"
+name = "Extension Reviewer"
+tagline = "Review Blender Extensions"
+maintainer = "Victor Chedeville <victor.ched@gmail.com>"
+type = "add-on"
+blender_version_min = "4.2.0"
+license = [
+  "SPDX:GPL-3.0-or-later",
+]
+
+[permissions]
+files = "Read Add-ons files content"
+clipboard = "Copy Review Message"
+
+[build]
+paths_exclude_pattern = [
+  "/.git/",
+  "__pycache__/",
+  "/.vscode/",
+]
+
+[build.generated]
+platforms = ["windows-x64", "macos-arm64", "linux-x64", "windows-arm64", "macos-x64"]
