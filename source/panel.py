@@ -117,8 +117,113 @@ class EXTENSIONREVIEW_PT_Review(Panel):
             row = layout.row()
             col = row.column()
 
+            # Manual Validation Error
+            col.label(text="Add Error:")
+
+            box = layout.box()
+            row = box.row()
+            row.prop(
+                context.scene, "error_blender_logo", toggle=False, text="Blender Icon"
+            )
+
+            row = box.row()
+            row.prop(
+                context.scene,
+                "error_missing_files_permission",
+                toggle=False,
+                text="Files Permission",
+            )
+
+            row = box.row()
+            row.prop(
+                context.scene,
+                "error_missing_network_permission",
+                toggle=False,
+                text="Network Permission",
+            )
+
+            row = box.row()
+            row.prop(
+                context.scene,
+                "error_missing_clipboard_permission",
+                toggle=False,
+                text="Clipboard Permission",
+            )
+
+            row = box.row()
+            row.prop(context.scene, "error_missing_tag", toggle=False, text="No Tag")
+
+            row = box.row()
+            row.prop(context.scene, "error_wrong_tag", toggle=False, text="Wrong Tag")
+
+            row = box.row()
+            row.prop(
+                context.scene,
+                "error_unclear_description",
+                toggle=False,
+                text="Unclear Description",
+            )
+
+            row = box.row()
+            row.prop(
+                context.scene,
+                "error_missing_documentation",
+                toggle=False,
+                text="Missing Documentation",
+            )
+
+            row = box.row()
+            row.prop(
+                context.scene,
+                "error_image_not_english",
+                toggle=False,
+                text="Image not in English",
+            )
+
+            row = box.row()
+            row.prop(
+                context.scene,
+                "error_description_not_english",
+                toggle=False,
+                text="Description not in English",
+            )
+
+            row = box.row()
+            row.prop(
+                context.scene,
+                "error_updater",
+                toggle=False,
+                text="Updater in the Add-on",
+            )
+
+            row = layout.row()
+            col = row.column()
+
+            # Manual Validation Warning
+            col.label(text="Add Warning:")
+
+            box = layout.box()
+            row = box.row()
+            row.prop(
+                context.scene,
+                "error_instal_precess_description",
+                toggle=False,
+                text="Installation Process in Description",
+            )
+
+            row = box.row()
+            row.prop(
+                context.scene,
+                "error_license_description",
+                toggle=False,
+                text="License in Description",
+            )
+
+            row = layout.row()
+            col = row.column()
+
             # Warning Validation
-            col.label(text="Warning:")
+            col.label(text="Error:")
 
             box = layout.box()
             row = box.row()

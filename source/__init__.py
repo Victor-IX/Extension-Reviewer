@@ -21,6 +21,90 @@ bpy.types.Scene.show_original_manifest = BoolProperty(
     description="Enable Manifest Processing",
 )
 
+bpy.types.Scene.error_blender_logo = BoolProperty(
+    name="Blender Logo",
+    default=False,
+    description="Blender Logo is used in the Extension Icon or the Feature Images",
+)
+
+bpy.types.Scene.error_missing_files_permission = BoolProperty(
+    name="Files Permission",
+    default=False,
+    description="Files Permission is missing in the Extension Manifest",
+)
+
+bpy.types.Scene.error_missing_network_permission = BoolProperty(
+    name="Network Permission",
+    default=False,
+    description="Network Permission is missing in the Extension Manifest",
+)
+
+bpy.types.Scene.error_missing_clipboard_permission = BoolProperty(
+    name="Clipboard Permission",
+    default=False,
+    description="Clipboard Permission is missing in the Extension Manifest",
+)
+
+bpy.types.Scene.error_missing_tag = BoolProperty(
+    name="No Tag",
+    default=False,
+    description="No Tag is present in the Extension Manifest",
+)
+
+bpy.types.Scene.error_wrong_tag = BoolProperty(
+    name="Wrong Tag",
+    default=False,
+    description="The Tag in the Extension Manifest is incorrect",
+)
+
+bpy.types.Scene.error_unclear_description = BoolProperty(
+    name="Unclear Description",
+    default=False,
+    description="The Description in the Extension Manifest is unclear",
+)
+
+bpy.types.Scene.error_missing_version = BoolProperty(
+    name="Missing Version",
+    default=False,
+    description="The Version in the Extension Manifest is missing",
+)
+
+bpy.types.Scene.error_missing_documentation = BoolProperty(
+    name="Missing Documentation",
+    default=False,
+    description="The Documentation in the Extension Manifest is missing",
+)
+
+bpy.types.Scene.error_image_not_english = BoolProperty(
+    name="Image not in English",
+    default=False,
+    description="The Image in the Extension Manifest is not in English",
+)
+
+bpy.types.Scene.error_description_not_english = BoolProperty(
+    name="Description not in English",
+    default=False,
+    description="The Description in the Extension Manifest is not in English",
+)
+
+bpy.types.Scene.error_updater = BoolProperty(
+    name="Updater",
+    default=False,
+    description="The Extension has an Updater",
+)
+
+bpy.types.Scene.error_instal_precess_description = BoolProperty(
+    name="Installation Process in Description",
+    default=False,
+    description="The Installation Process is in the Description",
+)
+
+bpy.types.Scene.error_license_description = BoolProperty(
+    name="License in Description",
+    default=False,
+    description="The License is in the Description",
+)
+
 classes = (
     EXTENSIONREVIEW_PT_Panel,
     EXTENSIONREVIEW_OT_ToggleTextbox,
