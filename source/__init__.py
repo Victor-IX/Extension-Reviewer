@@ -1,7 +1,7 @@
 import bpy
 from .panel import *
 from .get_addons import get_addons
-from bpy.props import BoolProperty, StringProperty
+from bpy.props import BoolProperty
 
 bl_info = {
     "name": "Extension Reviewer",
@@ -11,6 +11,8 @@ bl_info = {
     "blender": (4, 2, 0),
     "location": "View3D",
 }
+
+bl_idname = __package__
 
 
 bpy.types.Scene.show_original_manifest = BoolProperty(
