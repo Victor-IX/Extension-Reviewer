@@ -20,6 +20,8 @@ paths_exclude_pattern = [
   "/.git/",
   "__pycache__/",
   "/.vscode/",
+  "/LICENSE",
+  "/.gitignore",
 ]
 
 [build.generated]
