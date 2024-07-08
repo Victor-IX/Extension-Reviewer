@@ -1,7 +1,7 @@
 import bpy
 from .panel import *
 from .get_addons import get_addons
-from bpy.props import BoolProperty
+from bpy.props import BoolProperty, StringProperty
 
 bl_info = {
     "name": "Extension Reviewer",

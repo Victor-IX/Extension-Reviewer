@@ -12,7 +12,7 @@ def get_addon_path():
     addon_name = __package__
 
     scripts_path = bpy.utils.user_resource("EXTENSIONS")
-    addon_path = os.path.join(scripts_path, "user_default")
+    addon_path = os.path.join(scripts_path, "user_default", addon_name)
     
     if os.path.exists(addon_path):
         return addon_path
