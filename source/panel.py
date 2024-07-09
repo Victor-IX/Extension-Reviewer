@@ -10,7 +10,7 @@ activated_addon_name = ""
 errors = []
 
 
-class EXTENSIONREVIEW_OT_ToggleTextbox(Operator):
+class EXTENSIONREVIEW_OT_toggle_textbox(Operator):
     bl_idname = "extensionreview.toggle"
     bl_label = "Get Extension Review"
 
@@ -52,12 +52,14 @@ class EXTENSIONREVIEW_OT_ToggleTextbox(Operator):
         return {"FINISHED"}
 
 
-class EXTENSIONREVIEW_PT_Panel(Panel):
-    bl_label = "Get Addons List"
-    bl_idname = "GETADDONSLIST_PT_panel"
+class WorkSpaceButtonsPanel:
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
     bl_category = "Get Addons List"
+
+
+class EXTENSIONREVIEW_PT_panel(WorkSpaceButtonsPanel, Panel):
+    bl_label = "Get Addons List"
 
     def draw(self, context):
         layout = self.layout
@@ -75,12 +77,8 @@ class EXTENSIONREVIEW_PT_Panel(Panel):
                 row.prop(context.scene, addon_name, toggle=True, text=addon_name)
 
 
-class EXTENSIONREVIEW_PT_Review(Panel):
+class EXTENSIONREVIEW_PT_review(WorkSpaceButtonsPanel, Panel):
     bl_label = "Review Addon"
-    bl_idname = "REVIEWADDON_PT_review"
-    bl_space_type = "VIEW_3D"
-    bl_region_type = "UI"
-    bl_category = "Get Addons List"
 
     def draw(self, context):
         layout = self.layout
@@ -113,88 +111,6 @@ class EXTENSIONREVIEW_PT_Review(Panel):
                 row = box.row()
                 row.scale_y = 0.5
                 row.label(text=content)
-
-            row = layout.row()
-            col = row.column()
-
-            # Manual Validation Error
-            col.label(text="Add Error:")
-
-            box = layout.box()
-            row = box.row()
-            row.prop(
-                context.scene, "error_blender_logo", toggle=False, text="Blender Icon"
-            )
-
-            row = box.row()
-            row.prop(
-                context.scene,
-                "error_missing_files_permission",
-                toggle=False,
-                text="Files Permission",
-            )
-
-            row = box.row()
-            row.prop(
-                context.scene,
-                "error_missing_network_permission",
-                toggle=False,
-                text="Network Permission",
-            )
-
-            row = box.row()
-            row.prop(
-                context.scene,
-                "error_missing_clipboard_permission",
-                toggle=False,
-                text="Clipboard Permission",
-            )
-
-            row = box.row()
-            row.prop(context.scene, "error_missing_tag", toggle=False, text="No Tag")
-
-            row = box.row()
-            row.prop(context.scene, "error_wrong_tag", toggle=False, text="Wrong Tag")
-
-            row = box.row()
-            row.prop(
-                context.scene,
-                "error_unclear_description",
-                toggle=False,
-                text="Unclear Description",
-            )
-
-            row = box.row()
-            row.prop(
-                context.scene,
-                "error_missing_documentation",
-                toggle=False,
-                text="Missing Documentation",
-            )
-
-            row = box.row()
-            row.prop(
-                context.scene,
-                "error_image_not_english",
-                toggle=False,
-                text="Image not in English",
-            )
-
-            row = box.row()
-            row.prop(
-                context.scene,
-                "error_description_not_english",
-                toggle=False,
-                text="Description not in English",
-            )
-
-            row = box.row()
-            row.prop(
-                context.scene,
-                "error_updater",
-                toggle=False,
-                text="Updater in the Add-on",
-            )
 
             row = layout.row()
             col = row.column()
@@ -278,3 +194,92 @@ class EXTENSIONREVIEW_PT_Review(Panel):
 
             col.scale_y = 2
             col.operator("extensionreview.toggle", text="Copy Extension Review")
+
+
+class EXTENSIONREVIEW_PT_review_error(WorkSpaceButtonsPanel, Panel):
+    bl_label = "Review Addon Manual Error"
+    bl_parent_id = "EXTENSIONREVIEW_PT_review"
+    owner_ids = set()
+
+    def draw(self, context):
+        layout = self.layout
+
+        row = layout.row()
+        col = row.column()
+
+        # Manual Validation Error
+        col.label(text="Add Error:")
+
+        box = layout.box()
+        row = box.row()
+        row.prop(context.scene, "error_blender_logo", toggle=False, text="Blender Icon")
+
+        row = box.row()
+        row.prop(
+            context.scene,
+            "error_missing_files_permission",
+            toggle=False,
+            text="Files Permission",
+        )
+
+        row = box.row()
+        row.prop(
+            context.scene,
+            "error_missing_network_permission",
+            toggle=False,
+            text="Network Permission",
+        )
+
+        row = box.row()
+        row.prop(
+            context.scene,
+            "error_missing_clipboard_permission",
+            toggle=False,
+            text="Clipboard Permission",
+        )
+
+        row = box.row()
+        row.prop(context.scene, "error_missing_tag", toggle=False, text="No Tag")
+
+        row = box.row()
+        row.prop(context.scene, "error_wrong_tag", toggle=False, text="Wrong Tag")
+
+        row = box.row()
+        row.prop(
+            context.scene,
+            "error_unclear_description",
+            toggle=False,
+            text="Unclear Description",
+        )
+
+        row = box.row()
+        row.prop(
+            context.scene,
+            "error_missing_documentation",
+            toggle=False,
+            text="Missing Documentation",
+        )
+
+        row = box.row()
+        row.prop(
+            context.scene,
+            "error_image_not_english",
+            toggle=False,
+            text="Image not in English",
+        )
+
+        row = box.row()
+        row.prop(
+            context.scene,
+            "error_description_not_english",
+            toggle=False,
+            text="Description not in English",
+        )
+
+        row = box.row()
+        row.prop(
+            context.scene,
+            "error_updater",
+            toggle=False,
+            text="Updater in the Add-on",
+        )

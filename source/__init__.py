@@ -106,9 +106,10 @@ bpy.types.Scene.error_license_description = BoolProperty(
 )
 
 classes = (
-    EXTENSIONREVIEW_PT_Panel,
-    EXTENSIONREVIEW_OT_ToggleTextbox,
-    EXTENSIONREVIEW_PT_Review,
+    EXTENSIONREVIEW_PT_panel,
+    EXTENSIONREVIEW_OT_toggle_textbox,
+    EXTENSIONREVIEW_PT_review,
+    EXTENSIONREVIEW_PT_review_error
 )
 
 
